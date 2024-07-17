@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+#Content {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(45deg, rgba(0, 204, 255, 0.726), rgba(0, 110, 255, 0.836)), url(./img/Bg.jpg);
+  background-blend-mode: overlay; /* Add blend mode for better overlay effect */
+  background-position: center;
+  background-size: cover; /* Cover ensures the background fills the entire container */
+  background-attachment: fixed; /* Fixed to keep background fixed while scrolling */
+  overflow: auto; /* Allow scrolling if content exceeds viewport height */
+}
+
+#ContentWrapper {
+  width: 450px;
+  background: rgba(255, 255, 255, 0.9); /* Adjust background color with transparency */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+#ContentWrapper h2 {
+  font-size: 2rem;
+  padding: 10px 0;
+  color: dodgerblue;
+  text-shadow: 1px 1px 5px #b6b6b6;
+  text-align: center;
+}
+
+ul {
+  padding: 10px 20px;
+  margin: auto;
+}
+
+ul li {
+  list-style: none;
+  padding: 5px 0;
+  font-size: 1.1rem;
+}
+
+ul li input {
+  cursor: pointer;
+}
+
+#SubmitButton {
+  text-align: center;
+}
+
+#SubmitButton .btn {
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  display: inline-block;
+  min-width: 150px;
+  text-align: center;
+  margin: 10px auto;
+  background: dodgerblue;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+  z-index: 1;
+}
+
+#SubmitButton .btn:focus {
+  transform: scale(1.1);
+  box-shadow: 1px 2px 10px #525252;
+}
+
+#SubmitButton .btn:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #00e1ff;
+  border-radius: 5px;
+  transition: 0.3s;
+  z-index: -1;
+  transform: translateX(-100%);
+}
+
+#SubmitButton .btn:hover:before {
+  transform: translateX(0);
+}
+
+#ShowScore {
+  width: 90%;
+  margin: 15px auto;
+  padding: 20px 10px;
+  background: rgba(207, 213, 215, 0.9); /* Add transparency for better background visibility */
+  color: black;
+  border-radius: 5px;
+  box-shadow: 0px 2px 10px #424242;
+  text-align: left;
+}
+
+#ShowScore h4 {
+  margin: 10px 0;
+}
+
+#ShowScore p {
+  margin: 5px 0;
+}
+
+#time {
+  font-size: 2rem;
+  color: red;
+}
+
+.ScoreArea {
+  display: none;
+}
+
+/* Media queries for responsive design */
+@media screen and (max-width: 768px) {
+  * {
+    cursor: default !important;
+  }
+  
+  #ContentWrapper {
+    width: 50vw !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  #SubmitButton .btn {
+    font-size: 1.2rem !important;
+  }
+}
+
+@media screen and (max-width: 615px) {
+  #ContentWrapper {
+    width: 60vw !important;
+  }
+}
+
+@media screen and (max-width: 493px) {
+  #ContentWrapper {
+    width: 70vw !important;
+  }
+}
+
+@media screen and (max-width: 413px) {
+  #ContentWrapper {
+    width: 80vw !important;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  #ContentWrapper {
+    width: 90vw !important;
+  }
+}
+
+@media screen and (max-width: 321px) {
+  #ContentWrapper {
+    width: 97vw !important;
+  }
+}
