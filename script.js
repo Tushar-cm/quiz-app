@@ -1,3 +1,4 @@
+// Select elements from the DOM
 const questionContainer = document.querySelector("h2");
 const option1 = document.querySelector("#option1");
 const option2 = document.querySelector("#option2");
@@ -8,13 +9,15 @@ const usersAnswer = document.querySelectorAll(".answer");
 const scoreArea = document.querySelector("#ShowScore");
 const timerElement = document.querySelector("#time");
 
+// Initialize variables for tracking quiz state
 let questionCount = 0;
 let score = 0;
 let timeLeft = 120;
 let timerInterval;
 let userAnswers = [];
-let questionDataBase = []; // Corrected variable name
+let questionDataBase = [];
 
+// Function to fetch questions from the Open Trivia Database API
 const fetchQuestionsFromAPI = async () => {
   try {
     const response = await fetch(
@@ -38,40 +41,51 @@ const fetchQuestionsFromAPI = async () => {
   }
 };
 
+// Main function to initialize quiz and fetch questions
 const mainFunc = async () => {
   try {
     const questions = await fetchQuestionsFromAPI();
-    questionDataBase.push(...questions); // Corrected spelling here
-    displayQuestion();
+    questionDataBase.push(...questions); // Store fetched questions
+    displayQuestion(); // Display the first question
   } catch (error) {
     console.error("Failed to fetch questions:", error);
     alert("Failed to fetch questions. Please try again later.");
   }
 };
 
+// Function to decode HTML entities to display questions correctly
+const decodeHTMLEntities = (text) => {
+  const textArea = document.createElement("textarea");
+  textArea.innerHTML = text;
+  return textArea.value;
+};
+
+// Function to display the current question and its options
 const displayQuestion = () => {
   const question = questionDataBase[questionCount];
   if (!question) {
     return; // Handle case where there are no more questions
   }
-  questionContainer.innerText = question.question;
-  option1.innerText = question.option1;
-  option2.innerText = question.option2;
-  option3.innerText = question.option3;
-  option4.innerText = question.option4;
+  questionContainer.innerText = decodeHTMLEntities(question.question);
+  option1.innerText = decodeHTMLEntities(question.option1);
+  option2.innerText = decodeHTMLEntities(question.option2);
+  option3.innerText = decodeHTMLEntities(question.option3);
+  option4.innerText = decodeHTMLEntities(question.option4);
 };
 
+// Function to start the quiz timer
 const startTimer = () => {
   timerInterval = setInterval(() => {
     timeLeft--;
     timerElement.innerText = timeLeft;
     if (timeLeft === 0) {
       clearInterval(timerInterval);
-      showScore();
+      showScore(); // Show score when time runs out
     }
   }, 1000);
 };
 
+// Function to check the selected answer and store it
 const goCheckAnswer = () => {
   let selectedAnswer;
   usersAnswer.forEach((data) => {
@@ -83,12 +97,14 @@ const goCheckAnswer = () => {
   return selectedAnswer;
 };
 
+// Function to deselect all options
 const deselectAll = () => {
   usersAnswer.forEach((data) => {
     data.checked = false;
   });
 };
 
+// Function to show the user's score and correct answers
 const showScore = () => {
   scoreArea.style.display = "block";
   let scoreContent = `<h3>Your score is ${score} / ${questionDataBase.length}</h3>`;
@@ -105,6 +121,7 @@ const showScore = () => {
   scoreArea.innerHTML = scoreContent;
 };
 
+// Event listener for the submit button
 submitButton.addEventListener("click", () => {
   const checkAnswer = goCheckAnswer();
   if (checkAnswer === questionDataBase[questionCount].option4) {
@@ -120,5 +137,6 @@ submitButton.addEventListener("click", () => {
   }
 });
 
+// Initialize the quiz and start the timer
 mainFunc();
 startTimer();
