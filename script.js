@@ -21,7 +21,7 @@ let questionDataBase = [];
 const fetchQuestionsFromAPI = async () => {
   try {
     const response = await fetch(
-      "https://opentdb.com/api.php?amount=10&category=24&difficulty=medium&type=multiple"
+      "https://opentdb.com/api.php?amount=10&category=9&difficulty=medium"
     );
     if (!response.ok) {
       throw new Error("Failed to fetch questions");
