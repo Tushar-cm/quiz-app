@@ -1,4 +1,4 @@
-g# Quiz App
+# Quiz App
 
 Welcome to the Quiz App! This project is designed to provide a user-friendly platform for creating and taking quizzes. The app includes features like user authentication, quiz creation and management, multiple-choice questions, a timer for each quiz, and score calculation and display.
 
